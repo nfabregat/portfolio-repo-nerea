@@ -1,5 +1,6 @@
 {
-  "name": "mi-web",
+  "author": "Nerea Fabregat Mulet",
+  "name": "portfolio-web-nerea",
   "private": true,
   "version": "0.0.0",
   "type": "module",

@@ -1,4 +1,4 @@
-# Web de Nombre y apellido
+# Web de Nerea Fabregat Mulet
 
 Este proyecto es una web de tipo...
 
