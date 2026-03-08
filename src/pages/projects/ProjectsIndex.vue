@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { projects } from "./data";
 import { Button } from "@/components/ui/button";
+import { RouterLink } from "vue-router";
 </script>
 
 <template>
@@ -14,7 +15,6 @@ import { Button } from "@/components/ui/button";
       </div>
     </header>
 
-    <!-- Responsive grid (like the reference “collection” page idea) -->
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <article
         v-for="p in projects"
@@ -48,10 +48,13 @@ import { Button } from "@/components/ui/button";
         </div>
 
         <div class="mt-4">
-          <!-- No detail routing yet (next commit) -->
-          <Button variant="secondary" disabled class="w-full">
-            View details (next step)
-          </Button>
+          <div class="mt-4">
+            <RouterLink :to="{ name: 'project-detail', params: { slug: p.slug } }">
+              <Button variant="secondary" class="w-full">
+                View details
+              </Button>
+            </RouterLink>
+          </div>
         </div>
       </article>
     </div>
