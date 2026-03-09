@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router";
 import NavigatorPrimarius from "@/components/NavigatorPrimarius.vue";
+import SiteFooter from "./components/SiteFooter.vue";
 
 const menuItems = [
   { label: "Projects", to: "/projects" },
@@ -10,9 +11,12 @@ const menuItems = [
 </script>
 
 <template>
-  <!-- pt-16 para que el contenido no quede debajo del navbar fijo -->
-  <main class="pt-16">
-    <NavigatorPrimarius :items="menuItems" home-route="/" />
-    <RouterView />
-  </main>
+  <div class="pt-16 min-h-dvh flex flex-col">
+    <main class="pt-16">
+      <NavigatorPrimarius :items="menuItems" home-route="/" />
+      <RouterView />
+    </main>
+
+    <SiteFooter/>
+  </div>
 </template>

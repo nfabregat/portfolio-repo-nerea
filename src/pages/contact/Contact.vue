@@ -63,7 +63,17 @@ function submit() {
   touched.email = false
   touched.message = false
 }
+
+type SocialLink = {
+  label: string
+  url: string
+  icon: any
+}
+
 </script>
+
+
+
 
 <template>
   <section class="mx-auto max-w-3xl px-6 py-10">
