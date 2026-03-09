@@ -1,7 +1,27 @@
 <script setup lang="ts">
+import { computed, ref } from "vue";
+
 import { projects } from "./data";
 import { Button } from "@/components/ui/button";
 import { RouterLink } from "vue-router";
+
+
+  type Tag = (typeof projects)[number]["tags"][number];
+
+  const selectedTag = ref<Tag | "all">("all");
+
+  const allTags = computed<Tag[]>(() => {
+    const set = new Set<Tag>();
+    for (const p of projects) {
+      for (const t of p.tags) set.add(t);
+    }
+    return Array.from(set).sort();
+  });
+
+  const filteredProjects = computed(() => {
+    if (selectedTag.value === "all") return projects;
+    return projects.filter((p) => p.tags.includes(selectedTag.value as Tag));
+  });
 </script>
 
 <template>
@@ -14,10 +34,32 @@ import { RouterLink } from "vue-router";
         </p>
       </div>
     </header>
+      <div class="mt-6 flex flex-wrap items-center gap-2">
+        <Button
+          variant="outline"
+          size="sm"
+          :class="selectedTag === 'all' ? 'bg-accent text-accent-foreground' : ''"
+          @click="selectedTag = 'all'"
+        >
+          All
+        </Button>
+
+        <Button
+          v-for="t in allTags"
+          :key="t"
+          variant="outline"
+          size="sm"
+          class="capitalize"
+          :class="selectedTag === t ? 'bg-accent text-accent-foreground' : ''"
+          @click="selectedTag = t"
+        >
+          {{ t }}
+        </Button>
+      </div>
 
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       <article
-        v-for="p in projects"
+        v-for="p in filteredProjects"
         :key="p.slug"
         class="rounded-xl border bg-card p-5 shadow-sm flex flex-col"
       >
