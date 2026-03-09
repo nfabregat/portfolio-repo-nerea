@@ -5,6 +5,7 @@ import { projects } from "./data";
 import { Button } from "@/components/ui/button";
 import { RouterLink } from "vue-router";
 
+import ProjectCardCarousel from "@/components/projects/ProjectCardCarousel.vue";
 
   type Tag = (typeof projects)[number]["tags"][number];
 
@@ -61,16 +62,12 @@ import { RouterLink } from "vue-router";
       <article
         v-for="p in filteredProjects"
         :key="p.slug"
-        class="rounded-xl border bg-card p-5 shadow-sm flex flex-col transition hover:shadow-md"
+        class="rounded-xl border bg-card p-5 shadow-sm flex flex-col overflow-visible transition hover:shadow-md"
       >
-        <div class="aspect-video w-full overflow-hidden rounded-md border bg-background">
-          <img
-            :src="p.cover"
-            :alt="p.title"
-            class="h-full w-full object-cover"
-            loading="lazy"
-          />
-        </div>
+        <ProjectCardCarousel
+          :images="p.gallery.length ? p.gallery : [p.cover]"
+          :alt="p.title"
+        />
 
         <div class="mt-4 flex items-center justify-between gap-3">
           <h2 class="font-medium leading-tight">{{ p.title }}</h2>
