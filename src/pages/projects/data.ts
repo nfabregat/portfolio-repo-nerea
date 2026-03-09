@@ -14,42 +14,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-        slug: "mi-web-base",
-        title: "Base Vue Website (Class Project)",
-        summary: "Starting point built in class with Vue, TypeScript, Router and Tailwind.",
-        year: "2026",
-        tags: ["web", "ui"],
-        tools: ["Vue", "TypeScript", "Tailwind"],
-        cover: "/vite.svg",
+    slug: "transversal2",
+    title: "Transversal 2",
+    summary: "Project summary (edit this later).",
+    year: "2026",
+    tags: ["web"],
+    tools: ["Vue", "TypeScript", "Tailwind"],
+    cover: "/portfolio/covers/transversal2.webp",
 
-        description:
-            "This project was built as a base to practice routing, reusable components, and responsive layouts. It helped me understand how to structure pages and manage UI states in Vue.",
-        gallery: ["/vite.svg", "/vite.svg"],
-    },
-  {
-        slug: "ui-components",
-        title: "UI Components Collection",
-        summary: "Reusable UI components and responsive layouts.",
-        year: "2026",
-        tags: ["ui"],
-        tools: ["shadcn/ui", "Lucide", "Tailwind"],
-        cover: "/vite.svg",
-
-        description:
-        "This project was built as a base to practice routing, reusable components, and responsive layouts. It helped me understand how to structure pages and manage UI states in Vue.",
-         gallery: ["/vite.svg", "/vite.svg"],
-  },
-  {
-        slug: "branding-piece",
-        title: "Branding Exercise",
-        summary: "Visual identity exploration: typography, color, and layout decisions.",
-        year: "2026",
-        tags: ["branding"],
-        tools: ["Illustrator", "Figma"],
-        cover: "/vite.svg",
-
-        description:
-        "This project was built as a base to practice routing, reusable components, and responsive layouts. It helped me understand how to structure pages and manage UI states in Vue.",
-        gallery: ["/vite.svg", "/vite.svg"],
+    description: "Project overview (edit this later).",
+    gallery: [
+      "/portfolio/covers/transversal2.webp",
+      "/portfolio/projects/transversal2/01.webp",
+      "/portfolio/projects/transversal2/02.webp",
+      "/portfolio/projects/transversal2/03.webp",
+      "/portfolio/projects/transversal2/04.webp",
+      "/portfolio/projects/transversal2/05.webp",
+      "/portfolio/projects/transversal2/06.webp",
+      "/portfolio/projects/transversal2/07.webp",
+    ],
   },
 ];

@@ -61,14 +61,16 @@ import { RouterLink } from "vue-router";
       <article
         v-for="p in filteredProjects"
         :key="p.slug"
-        class="rounded-xl border bg-card p-5 shadow-sm flex flex-col"
+        class="rounded-xl border bg-card p-5 shadow-sm flex flex-col transition hover:shadow-md"
       >
-        <img
-          :src="p.cover"
-          :alt="p.title"
-          class="h-28 w-full rounded-md border bg-background object-contain"
-          loading="lazy"
-        />
+        <div class="aspect-video w-full overflow-hidden rounded-md border bg-background">
+          <img
+            :src="p.cover"
+            :alt="p.title"
+            class="h-full w-full object-cover"
+            loading="lazy"
+          />
+        </div>
 
         <div class="mt-4 flex items-center justify-between gap-3">
           <h2 class="font-medium leading-tight">{{ p.title }}</h2>
@@ -79,26 +81,13 @@ import { RouterLink } from "vue-router";
           {{ p.summary }}
         </p>
 
-        <div class="mt-3 flex flex-wrap gap-2">
-          <span
-            v-for="tag in p.tags"
-            :key="tag"
-            class="text-xs px-2 py-1 rounded-md border bg-background text-muted-foreground"
-          >
-            {{ tag }}
-          </span>
-        </div>
-
         <div class="mt-4">
-          <div class="mt-4">
-            <RouterLink :to="{ name: 'project-detail', params: { slug: p.slug } }">
-              <Button variant="secondary" class="w-full">
-                View details
-              </Button>
-            </RouterLink>
-          </div>
+          <RouterLink :to="{ name: 'project-detail', params: { slug: p.slug } }">
+            <Button variant="secondary" class="w-full">View details</Button>
+          </RouterLink>
         </div>
       </article>
     </div>
+
   </section>
 </template>
