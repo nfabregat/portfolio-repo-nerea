@@ -1,8 +1,13 @@
 import Home from "@/pages/home/Home.vue";
+
 import ProjectsLayout from "@/pages/projects/ProjectsLayout.vue";
 import ProjectsIndex from "@/pages/projects/ProjectsIndex.vue";
 import ProjectDetail from "@/pages/projects/ProjectDetail.vue";
+
 import About from "@/pages/about/About.vue";
+import Education from "@/pages/about/Education.vue";
+import Skills from "@/pages/about/Skills.vue";
+
 import Contact from "@/pages/contact/Contact.vue";
 
 import { createRouter, createWebHashHistory } from "vue-router";
@@ -34,9 +39,22 @@ export const router = createRouter({
       ],
     },
 
-    { path: "/about", 
-      name: "about", 
-      component: About 
+    {
+      path: "/about",
+      component: About,
+      children: [
+        { path: "", 
+          redirect: { name: "about-education" } 
+        },
+        { path: "education", 
+          name: "about-education", 
+          component: Education 
+        },
+        { path: "skills", 
+          name: "about-skills", 
+          component: Skills 
+        },
+      ],
     },
 
     { path: "/contact", 

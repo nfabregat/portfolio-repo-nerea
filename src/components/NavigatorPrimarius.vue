@@ -36,6 +36,9 @@ onUnmounted(() => {
 
 const route = useRoute();
 const activePath = computed(() => route.path);
+    function isActive(to: string) {
+    return activePath.value === to || activePath.value.startsWith(to + "/");
+    }
 
 function closeMobile() {
   mobileOpen.value = false;
@@ -101,7 +104,7 @@ function closeMobile() {
           <Button
             variant="ghost"
             class="w-full justify-start"
-            :class="activePath === item.to ? 'bg-accent text-accent-foreground' : ''"
+            :class="isActive(item.to) ? 'bg-accent text-accent-foreground' : ''"
           >
             {{ item.label }}
           </Button>
