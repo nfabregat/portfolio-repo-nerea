@@ -63,6 +63,32 @@ const project = computed(() => projects.find((p) => p.slug === slug.value));
           </div>
         </aside>
       </div>
+                <!-- Overview -->
+            <section class="mt-10">
+            <h2 class="text-xl font-semibold">Overview</h2>
+            <p class="mt-2 text-muted-foreground leading-relaxed">
+                {{ project.description }}
+            </p>
+            </section>
+
+            <!-- Gallery -->
+            <section class="mt-10">
+            <h2 class="text-xl font-semibold">Gallery</h2>
+            <p class="mt-2 text-muted-foreground">
+                Visual highlights from the project.
+            </p>
+
+            <div class="mt-4 grid gap-4 sm:grid-cols-2">
+                <img
+                v-for="(img, i) in project.gallery"
+                :key="img + i"
+                :src="img"
+                :alt="`${project.title} image ${i + 1}`"
+                class="w-full rounded-xl border bg-background object-contain p-4"
+                loading="lazy"
+                />
+            </div>
+            </section>
     </div>
 
     <div v-else class="mt-8 rounded-xl border bg-card p-6">
