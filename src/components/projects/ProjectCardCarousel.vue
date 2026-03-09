@@ -6,17 +6,13 @@ import { ChevronLeft, ChevronRight } from "lucide-vue-next";
 type Props = {
   images: string[];
   alt: string;
-  intervalMs?: number;
-  resumeAfterMs?: number;
-  fit?: "cover" | "contain";  
-  zoom?: boolean;             
+  intervalMs?: number;      // autoplay speed (hover)
+  resumeAfterMs?: number;   // resume autoplay after manual click
 };
 
 const props = withDefaults(defineProps<Props>(), {
-  intervalMs: 2800,
-  resumeAfterMs: 2500,
-  fit: "cover",
-  zoom: true,
+  intervalMs: 2000,      // ~2.8s between slides on hover
+  resumeAfterMs: 2000,   // resume autoplay 2.5s after last arrow click
 });
 
 const index = ref(0);          
@@ -91,27 +87,20 @@ onUnmounted(() => stopAutoplayTimers());
 <template>
   <div
     class="relative w-full overflow-hidden rounded-md border bg-background
-            transition-transform duration-200 ease-out"
-        :class="props.zoom ? 'hover:scale-[1.2] hover:-translate-y-2 hover:shadow-xl hover:z-10' : ''"
-        :style="{ aspectRatio: '1600 / 1131' }"
-        @mouseenter="onEnter"
-        @mouseleave="onLeave"
-    >
-    <div
-        class="h-full w-full"
-        :class="props.fit === 'contain' ? 'grid place-items-center bg-muted/30 p-4' : ''"
-        >
-        <img
-            v-if="safeImages.length"
-            :src="safeImages[index]"
-            :alt="alt"
-            loading="lazy"
-            draggable="false"
-            :class="props.fit === 'contain'
-            ? 'max-h-full max-w-full object-contain'
-            : 'h-full w-full object-cover'"
-        />
-     </div>
+           transition-transform duration-200 ease-out
+           hover:scale-[1.2] hover:-translate-y-2 hover:shadow-xl hover:z-10"
+    :style="{ aspectRatio: '1600 / 1131' }"
+    @mouseenter="onEnter"
+    @mouseleave="onLeave"
+  >
+    <img
+      v-if="safeImages.length"
+      :src="safeImages[index]"
+      :alt="alt"
+      class="h-full w-full object-cover"
+      loading="lazy"
+      draggable="false"
+    />
 
     <!-- Arrows (manual navigation, doesn’t open details) -->
     <div v-if="hasMany" class="absolute inset-0 flex items-center justify-between px-2">

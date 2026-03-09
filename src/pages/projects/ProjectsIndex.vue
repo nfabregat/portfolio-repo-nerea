@@ -64,12 +64,10 @@ import ProjectCardCarousel from "@/components/projects/ProjectCardCarousel.vue";
         :key="p.slug"
         class="rounded-xl border bg-card p-5 shadow-sm flex flex-col overflow-visible transition hover:shadow-md"
       >
-       <ProjectCardCarousel
-        :images="p.gallery.length ? p.gallery : [p.cover]"
-        :alt="p.title"
-        :zoom="p.slug !== 'riceDenmark'"
-        :fit="p.slug === 'riceDenmark' ? 'contain' : 'cover'"
-      />
+        <ProjectCardCarousel
+          :images="p.gallery.length ? p.gallery : [p.cover]"
+          :alt="p.title"
+        />
 
         <div class="mt-4 flex items-center justify-between gap-3">
           <h2 class="font-medium leading-tight">{{ p.title }}</h2>
