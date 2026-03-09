@@ -33,3 +33,10 @@ export const skillGroups: SkillGroup[] = [
     items: ["Git / GitHub", "VS Code"],
   },
 ];
+
+
+export const otherInfo = {
+  languages: ["English (B2)", "Spanish (native)", "Catalan (native)"],
+  tools: ["Figma", "VS Code", "GitHub", "Adobe Illustrator"],
+  interests: ["UI design", "Frontend development", "Branding", "Motion graphics"],
+};

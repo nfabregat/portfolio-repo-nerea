@@ -7,6 +7,7 @@ import ProjectDetail from "@/pages/projects/ProjectDetail.vue";
 import About from "@/pages/about/About.vue";
 import Education from "@/pages/about/Education.vue";
 import Skills from "@/pages/about/Skills.vue";
+import Other from "@/pages/about/Other.vue";
 
 import Contact from "@/pages/contact/Contact.vue";
 
@@ -53,6 +54,10 @@ export const router = createRouter({
         { path: "skills", 
           name: "about-skills", 
           component: Skills 
+        },
+        { path: "other", 
+          name: "about-other", 
+          component: Other 
         },
       ],
     },

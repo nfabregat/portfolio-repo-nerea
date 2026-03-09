@@ -43,6 +43,16 @@ function isActive(target: string) {
               Skills
             </Button>
           </RouterLink>
+
+          <RouterLink to="/about/other">
+            <Button
+              variant="ghost"
+              class="w-full justify-start"
+              :class="isActive('/about/other') ? 'bg-accent text-accent-foreground' : ''"
+            >
+              Other
+            </Button>
+          </RouterLink>
         </nav>
       </aside>
 
