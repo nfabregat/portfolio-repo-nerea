@@ -29,35 +29,19 @@ const project = computed(() => projects.find((p) => p.slug === slug.value));
       {{ project.summary }}
     </p>
 
-    <!-- meta badges -->
-    <div class="mt-4 flex flex-wrap items-center gap-2">
-      <span class="px-3 py-1 rounded-full bg-background border border-foreground/15 text-sm">
-        {{ project.year }}
-      </span>
-
-      <span
-        v-for="tag in project.tags"
-        :key="tag"
-        class="px-3 py-1 rounded-full bg-background border border-foreground/15 text-sm capitalize"
-      >
-        {{ tag }}
-      </span>
-    </div>
-
-    <!-- keywords (accent highlight) -->
-    <div v-if="project.keywords?.length" class="mt-4 flex flex-wrap gap-2">
-      <span
-        v-for="k in project.keywords"
-        :key="k"
-        class="font-display px-3 py-1 rounded-full bg-accent text-accent-foreground text-sm"
-       >
-        {{ k }}
-      </span>
-    </div>
   </header>
 
+  <div class="mt-8">
+    <img
+      :src="project.heroImage ?? project.cover"
+      :alt="project.title"
+      class="w-full max-h-[70vh] object-cover"
+      loading="lazy"
+    />
+  </div>
+
   <!-- Layout -->
-  <div class="mt-10 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
+  <div class="mt-10 grid gap-10">
     <!-- Main -->
     <div class="space-y-10">
       <!-- Overview -->
@@ -124,47 +108,8 @@ const project = computed(() => projects.find((p) => p.slug === slug.value));
         </div>
       </section>
     </div>
-
-    <!-- Sidebar -->
-    <aside class="rounded-2xl border border-foreground/15 bg-background p-6 h-fit lg:sticky lg:top-24">
-      <h2 class="text-xl font-semibold">Project info</h2>
-
-      <dl class="mt-4 space-y-4 text-sm">
-        <div v-if="project.course">
-          <dt class="text-foreground/60">Course</dt>
-          <dd class="mt-1 text-foreground">{{ project.course }}</dd>
-        </div>
-
-        <div v-if="project.assignment">
-          <dt class="text-foreground/60">Assignment</dt>
-          <dd class="mt-1 text-foreground">{{ project.assignment }}</dd>
-        </div>
-
-        <div v-if="project.team?.length">
-          <dt class="text-foreground/60">Team</dt>
-          <dd class="mt-1 text-foreground">
-            <ul class="list-disc pl-5 space-y-1">
-              <li v-for="m in project.team" :key="m">{{ m }}</li>
-            </ul>
-          </dd>
-        </div>
-
-        <div v-if="project.tools?.length">
-          <dt class="text-foreground/60">Tools</dt>
-          <dd class="mt-2 flex flex-wrap gap-2">
-            <span
-              v-for="t in project.tools"
-              :key="t"
-              class="px-2 py-1 rounded-md border border-foreground/15 bg-background text-foreground"
-            >
-              {{ t }}
-            </span>
-          </dd>
-        </div>
-      </dl>
-    </aside>
   </div>
-</div>
+ </div>
 
     <div v-else class="mt-8 rounded-xl border bg-card p-6">
       <h2 class="text-lg font-semibold">Project not found</h2>

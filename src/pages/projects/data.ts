@@ -22,6 +22,8 @@ export interface Project {
   takeaways?: {
     strengths: string[];
     limitations: string[];
+
+  heroImage?: string;
   };
 }
 
@@ -58,6 +60,7 @@ export const projects: Project[] = [
 
   {
   slug: "placeres",
+  heroImage: "/portfolio/projects/placeres/08.webp",
   title: "Placeres",
   summary:
     "A photographic series that romanticizes small everyday moments, inspired by Jacques Henri Lartigue and Marta Soliño’s “Placeres”.",
