@@ -34,4 +34,26 @@ export const projects: Project[] = [
       "/portfolio/projects/transversal2/07.webp",
     ],
   },
+
+  {
+    slug: "placeres",
+    title: "Placeres",
+    summary: "Short project summary (edit later).",
+    year: "2026",
+    tags: ["web"],
+    tools: ["Vue", "TypeScript", "Tailwind"],
+    cover: "/portfolio/covers/placeres.webp",
+    description: "Project overview (edit later).",
+    gallery: [
+      "/portfolio/covers/placeres.webp",
+      "/portfolio/projects/placeres/01.webp",
+      "/portfolio/projects/placeres/02.webp",
+      "/portfolio/projects/placeres/03.webp",
+      "/portfolio/projects/placeres/04.webp",
+      "/portfolio/projects/placeres/05.webp",
+      "/portfolio/projects/placeres/06.webp",
+      "/portfolio/projects/placeres/07.webp",
+      "/portfolio/projects/placeres/08.webp",
+    ],
+  },
 ];

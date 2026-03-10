@@ -11,8 +11,8 @@ type Props = {
 };
 
 const props = withDefaults(defineProps<Props>(), {
-  intervalMs: 2000,      // ~2.8s between slides on hover
-  resumeAfterMs: 2000,   // resume autoplay 2.5s after last arrow click
+  intervalMs: 1800,      // ~2.8s between slides on hover
+  resumeAfterMs: 1800,   // resume autoplay 2.5s after last arrow click
 });
 
 const index = ref(0);          

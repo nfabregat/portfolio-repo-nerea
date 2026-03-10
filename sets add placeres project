@@ -1,0 +1,19 @@
+[33md11c2bb[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m Revert "riceDenmark project- assets y data"
+[33mef39680[m riceDenmark project- assets y data
+[33m94b7881[m Carousel en la página projects: vuelve a la imagen cover al pasar el ratón por fuera del carousel (transversal2)
+[33md33b728[m Carousel en la página projects al pasar el ratón por proyecto1 (transversal2)
+[33m40f4ecf[m Imagenes proyecto 1 - transversal2
+[33mad6281a[m Página about/other - Seccion para poner tools, languages, interests
+[33ma65197f[m Página ProjectsIndex, búsqueda de proyectos por etiquetas
+[33m648e212[m Página SiteFooter.vue - Footer global con enlace a redes sociales
+[33m0ebab8a[m Página home -  header and featured projects
+[33m31b9422[m Páginaabout (creación data.ts) - datos embebidos
+[33md157a7c[m Página ProjectDetail.vue - añadidos la seccion de overview y gallery
+[33m2cf4217[m Página Contact : creación formulario. Para que funccione, páginas creadas en src/ui/input  - Rutas anidadas
+[33m081d8d0[m Página About (skills/Education)  - Rutas anidadas
+[33m8ef1b09[m Página ProjectDetail.vue  - Rutas anidadas
+[33m8c17ddd[m Projects/data.ts -  datos embebidos
+[33m4bbee1d[m Toolbarre - Página NavigatiorPrimarius.vue
+[33mc6ab9f5[m Páginas projects/about/contact - enrutado
+[33m0ce54bb[m Modificación autor y nombre
+[33m9296577[m Commit inicial
