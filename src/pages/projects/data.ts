@@ -11,6 +11,18 @@ export interface Project {
   
   description: string;
   gallery: string[];
+
+
+  course?: string;
+  assignment?: string;
+  team?: string[];
+  keywords?: string[];
+  concept?: string;
+  inspiration?: string[];
+  takeaways?: {
+    strengths: string[];
+    limitations: string[];
+  };
 }
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
@@ -45,14 +57,43 @@ export const projects: Project[] = [
   },
 
   {
-    slug: "placeres",
-    title: "Placeres",
-    summary: "Short project summary (edit later).",
-    year: "2026",
-    tags: ["web"],
-    tools: ["Vue", "TypeScript", "Tailwind"],
-    cover: withBase("/portfolio/covers/placeres.webp"),
-    description: "Project overview (edit later).",
+  slug: "placeres",
+  title: "Placeres",
+  summary:
+    "A photographic series that romanticizes small everyday moments, inspired by Jacques Henri Lartigue and Marta Soliño’s “Placeres”.",
+  year: "2026",
+  tags: ["photography"], // si tu ProjectTag no tiene "photography", dime y lo ajusto
+  tools: ["Photography", "Photoshop"],
+  cover: "/portfolio/covers/placeres.webp",
+
+  // Case study fields
+  course: "Fundamentals of Digital Image",
+  assignment: "Composition based on an author",
+  team: ["Mar Albiol", "Berta Beniel", "Nerea Fabregat", "María del Rocío Torres"],
+  keywords: ["Happiness", "Everyday rituals", "Spontaneity", "Motion", "Natural light"],
+
+  description:
+    "Placeres explores whether happiness can be portrayed and how it appears in daily life. The series captures intimate, spontaneous gestures and small routines with a dynamic, light-filled visual approach.",
+  concept:
+    "In a fast-paced world, we often miss the tiny moments that make life feel softer. Placeres invites the viewer to slow down, pay attention, and turn everyday actions into visual poetry—finding wellbeing in presence rather than in big achievements.",
+  inspiration: [
+    "Movement and spontaneity: freezing the instant without posing.",
+    "Natural light to keep the images bright, alive, and authentic.",
+    "Bold framing and unexpected angles to enhance dynamism.",
+    "Everyday intimacy: small gestures and routines as “pleasures”.",
+  ],
+  takeaways: {
+    strengths: [
+      "Spontaneous framing creates a fresh and energetic tone.",
+      "Natural light adds texture and a sense of authenticity.",
+      "Everyday scenes become emotionally relatable when treated with care.",
+    ],
+    limitations: [
+      "There’s a risk of idealizing reality if the perspective is too narrow.",
+      "We focused on universal, simple gestures to keep it approachable.",
+    ],
+  },
+
     gallery: [
       withBase("/portfolio/covers/placeres.webp"),
       withBase("/portfolio/projects/placeres/01.webp"),

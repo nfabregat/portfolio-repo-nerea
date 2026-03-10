@@ -104,3 +104,15 @@
   font-family: "Fraunces", "Nunito Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
 }
 
+@layer utilities {
+  .font-display {
+    font-family: "Fraunces", "Nunito Sans", serif !important;
+  }
+}
+
+@layer utilities {
+  .subtitle {
+    font-family: "Nunito Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    letter-spacing: -0.01em;
+  }
+}
