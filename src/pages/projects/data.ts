@@ -1,4 +1,4 @@
-export type ProjectTag = "web" | "ui" | "branding" | "video";
+export type ProjectTag = "web" | "ui" | "branding" | "video" | "photography";
 
 export interface Project {
   slug: string; 
@@ -22,9 +22,8 @@ export interface Project {
   takeaways?: {
     strengths: string[];
     limitations: string[];
-
-  heroImage?: string;
   };
+  heroImage?: string;
 }
 
 const baseUrl = import.meta.env.BASE_URL ?? "/";
@@ -60,14 +59,14 @@ export const projects: Project[] = [
 
   {
   slug: "placeres",
-  heroImage: "/portfolio/projects/placeres/08.webp",
+  heroImage: withBase("/portfolio/projects/placeres/08.webp"),
   title: "Placeres",
   summary:
     "A photographic series that romanticizes small everyday moments, inspired by Jacques Henri Lartigue and Marta Soliño’s “Placeres”.",
   year: "2026",
-  tags: ["photography"], // si tu ProjectTag no tiene "photography", dime y lo ajusto
+  tags: ["photography"],
   tools: ["Photography", "Photoshop"],
-  cover: "/portfolio/covers/placeres.webp",
+  cover: withBase("/portfolio/covers/placeres.webp"),
 
   // Case study fields
   course: "Fundamentals of Digital Image",

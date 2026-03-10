@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, ref } from "vue";
+import { computed, onMounted, onUnmounted, ref } from "vue";
 import { useRoute, RouterLink } from "vue-router";
 import { projects } from "./data";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft } from "lucide-vue-next";
+import { ArrowLeft, List, X } from "lucide-vue-next";
 
 
 const route = useRoute();
@@ -29,7 +29,47 @@ const toc = computed(() => {
 });
 
 const showToc = computed(() => project.value?.slug === "placeres");
-const tocOpen = ref(true);
+const tocOpen = ref(false);
+const footerBumpPx = ref(0);
+
+let rafId: number | undefined;
+
+function updateFooterBump() {
+  if (!showToc.value) return;
+
+  const footer = document.querySelector("footer");
+  if (!footer) {
+    footerBumpPx.value = 0;
+    return;
+  }
+
+  const footerRect = footer.getBoundingClientRect();
+  const viewportH = window.innerHeight || 0;
+
+  // When footer comes into view, push the floating button upward so it doesn't overlap.
+  const overlap = viewportH - footerRect.top;
+  footerBumpPx.value = overlap > 0 ? overlap + 12 : 0;
+}
+
+function scheduleFooterBumpUpdate() {
+  if (rafId !== undefined) return;
+  rafId = window.requestAnimationFrame(() => {
+    rafId = undefined;
+    updateFooterBump();
+  });
+}
+
+onMounted(() => {
+  updateFooterBump();
+  window.addEventListener("scroll", scheduleFooterBumpUpdate, { passive: true });
+  window.addEventListener("resize", scheduleFooterBumpUpdate);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", scheduleFooterBumpUpdate);
+  window.removeEventListener("resize", scheduleFooterBumpUpdate);
+  if (rafId !== undefined) window.cancelAnimationFrame(rafId);
+});
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
@@ -59,39 +99,60 @@ function scrollToSection(id: string) {
     <p class="mt-3 text-foreground/75 leading-relaxed ">
       {{ project.summary }}
     </p>
-
   </header>
 
-  <nav
+  <!-- Floating index (Placeres only) -->
+  <div
     v-if="showToc"
-    class="mt-8 sticky top-20 z-30 rounded-2xl border border-foreground/15 bg-background/80 backdrop-blur p-2"
+    class="fixed right-6 z-50 flex flex-col items-end gap-2"
+    :style="{ bottom: `calc(1.5rem + ${footerBumpPx}px)` }"
   >
-    <div class="flex items-center justify-between gap-3 px-1">
-      <p class="text-sm text-foreground/70">Menu</p>
-      <Button
-        type="button"
-        variant="ghost"
-        size="sm"
-        class="h-8 px-2 hover:bg-accent hover:text-accent-foreground"
-        @click="tocOpen = !tocOpen"
-        :aria-expanded="tocOpen"
-      >
-        {{ tocOpen ? "Hide" : "Show" }}
-      </Button>
+    <div
+      v-show="tocOpen"
+      class="w-[min(18rem,calc(100vw-3rem))] overflow-hidden rounded-2xl border border-foreground/15 bg-background/90 shadow-xl backdrop-blur"
+    >
+      <div class="flex items-center justify-between gap-3 border-b border-foreground/10 px-3 py-2">
+        <p class="text-sm font-medium">Index</p>
+        <Button
+          type="button"
+          variant="ghost"
+          size="icon"
+          class="h-8 w-8 hover:bg-accent hover:text-accent-foreground"
+          @click="tocOpen = false"
+          aria-label="Close index"
+        >
+          <X class="h-4 w-4" />
+        </Button>
+      </div>
+
+      <div class="max-h-64 overflow-auto p-3">
+        <div class="flex flex-wrap gap-2">
+          <button
+            v-for="item in toc"
+            :key="item.id"
+            type="button"
+            class="px-3 py-1.5 rounded-full text-xs border border-foreground/15 bg-background hover:bg-accent hover:text-accent-foreground"
+            @click="scrollToSection(item.id); tocOpen = false"
+          >
+            {{ item.label }}
+          </button>
+        </div>
+      </div>
     </div>
 
-    <div v-show="tocOpen" class="mt-2 flex flex-wrap gap-2">
-      <button
-        v-for="item in toc"
-        :key="item.id"
-        type="button"
-        class="px-3 py-2 rounded-xl text-sm bg-background hover:bg-accent hover:text-accent-foreground"
-        @click="scrollToSection(item.id)"
-      >
-        {{ item.label }}
-      </button>
-    </div>
-  </nav>
+    <Button
+      type="button"
+      variant="secondary"
+      size="icon"
+      class="h-11 w-11 rounded-full shadow-lg border border-foreground/10 hover:bg-accent hover:text-accent-foreground"
+      @click="tocOpen = !tocOpen"
+      :aria-expanded="tocOpen"
+      aria-label="Toggle index"
+    >
+      <X v-if="tocOpen" class="h-5 w-5" />
+      <List v-else class="h-5 w-5" />
+    </Button>
+  </div>
 
 
   <div class="mt-8 hidden sm:block">
