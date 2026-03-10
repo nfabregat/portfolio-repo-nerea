@@ -97,7 +97,7 @@ onUnmounted(() => stopAutoplayTimers());
       v-if="safeImages.length"
       :src="safeImages[index]"
       :alt="alt"
-      class="h-full w-full object-cover"
+      class="h-full w-full object-cover object-top"
       loading="lazy"
       draggable="false"
     />

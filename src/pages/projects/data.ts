@@ -56,4 +56,26 @@ export const projects: Project[] = [
       "/portfolio/projects/placeres/08.webp",
     ],
   },
+
+  {
+    slug: "aureo",
+    title: "Aureo",
+    summary: "Short project summary (edit later).",
+    year: "2026",
+    tags: ["web"],
+    tools: ["Vue", "TypeScript", "Tailwind"],
+    cover: "/portfolio/covers/aureo.webp",
+    description: "Project overview (edit later).",
+    gallery: [
+      "/portfolio/covers/aureo.webp",
+      "/portfolio/projects/aureo/01.webp",
+      "/portfolio/projects/aureo/02.webp",
+      "/portfolio/projects/aureo/03.webp",
+      "/portfolio/projects/aureo/04.webp",
+      "/portfolio/projects/aureo/05.webp",
+      "/portfolio/projects/aureo/06.webp",
+      "/portfolio/projects/aureo/07.webp",
+      "/portfolio/projects/aureo/08.webp",
+    ],
+  },
 ];
