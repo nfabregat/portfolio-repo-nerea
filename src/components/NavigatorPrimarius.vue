@@ -46,14 +46,14 @@ function closeMobile() {
 </script>
 
 <template>
-  <nav class="fixed top-0 left-0 z-40 w-full border-b bg-background/80 backdrop-blur">
+  <nav class="fixed top-0 left-0 z-40 w-full border-b border-black/10 bg-[var(--primary)] text-[var(--primary-foreground)]">
     <div class="w-full px-2 sm:px-4">
       <!-- Top bar -->
       <div class="h-16 flex items-center justify-between">
         <!-- Desktop: Home icon -->
         <RouterLink
           :to="props.homeRoute"
-          class="hidden sm:inline-flex"
+          class="hidden sm:inline-flex rounded-md p-2 transition text-primary-foreground hover:bg-accent hover:text-accent-foreground"
           aria-label="Home"
         >
           <House class="h-7 w-7" />
@@ -72,17 +72,20 @@ function closeMobile() {
         <div class="hidden sm:flex items-center gap-1">
           <RouterLink v-for="item in props.items" :key="item.label" :to="item.to">
             <Button
-              variant="ghost"
-              :class="activePath === item.to ? 'bg-accent text-accent-foreground' : ''"
-            >
-              {{ item.label }}
+                variant="ghost"
+                class="hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+                :class="isActive(item.to)
+                  ? 'text-[var(--foreground)] font-semibold'
+                  : 'text-[var(--primary-foreground)]'"
+                >
+                {{ item.label }}
             </Button>
           </RouterLink>
         </div>
 
         <!-- Mobile toggle -->
         <Button
-          class="sm:hidden"
+          class="sm:hidden  bg-primary-foreground/15 text-primary-foreground hover:bg-accent hover:text-accent-foreground"
           variant="secondary"
           size="icon"
           @click="mobileOpen = !mobileOpen"
@@ -103,9 +106,11 @@ function closeMobile() {
         >
           <Button
             variant="ghost"
-            class="w-full justify-start"
-            :class="isActive(item.to) ? 'bg-accent text-accent-foreground' : ''"
-          >
+            class="w-full justify-start hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)]"
+            :class="isActive(item.to)
+              ? 'text-[var(--foreground)] font-semibold'
+              : 'text-[var(--primary-foreground)]'"
+            >
             {{ item.label }}
           </Button>
         </RouterLink>

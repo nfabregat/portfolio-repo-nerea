@@ -5,6 +5,8 @@ import { projects } from "./data";
 import { Button } from "@/components/ui/button";
 import { RouterLink } from "vue-router";
 
+import PageContainer from "@/components/layout/PageContainer.vue";
+
 import ProjectCardCarousel from "@/components/projects/ProjectCardCarousel.vue";
 
   type Tag = (typeof projects)[number]["tags"][number];
@@ -26,7 +28,7 @@ import ProjectCardCarousel from "@/components/projects/ProjectCardCarousel.vue";
 </script>
 
 <template>
-  <section class="mx-auto max-w-5xl px-6 py-10">
+  <PageContainer>
     <header class="flex items-end justify-between gap-4 flex-wrap">
       <div>
         <h1 class="text-3xl font-semibold tracking-tight">Projects</h1>
@@ -86,5 +88,5 @@ import ProjectCardCarousel from "@/components/projects/ProjectCardCarousel.vue";
       </article>
     </div>
 
-  </section>
+  </PageContainer>
 </template>
