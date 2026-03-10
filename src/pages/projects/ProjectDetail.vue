@@ -5,6 +5,7 @@ import { projects } from "./data";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-vue-next";
 
+
 const route = useRoute();
 const slug = computed(() => String(route.params.slug ?? ""));
 
@@ -15,11 +16,32 @@ const galleryImages = computed(() => {
   return project.value.gallery.filter((img) => img !== hero);
 });
 
+const toc = computed(() => {
+  if (!project.value) return [];
+  return [
+    
+    project.value.concept ? { id: "concept", label: "Concept" } : null,
+    project.value.inspiration?.length ? { id: "inspiration", label: "Inspiration" } : null,
+    { id: "overview", label: "Overview" },
+    project.value.takeaways ? { id: "takeaways", label: "Takeaways" } : null,
+    { id: "gallery", label: "Gallery" },
+  ].filter(Boolean) as { id: string; label: string }[];
+});
+
+function scrollToSection(id: string) {
+  const el = document.getElementById(id);
+  if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+
 </script>
 
 <template>
   <section class="mx-auto max-w-5xl px-6 py-10">
-    <RouterLink :to="{ name: 'projects' }" class="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-foreground">
+    <RouterLink
+      :to="{ name: 'projects' }"
+      class="inline-flex items-center gap-2 rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
+    >
       <ArrowLeft class="h-4 w-4" />
       Back to projects
     </RouterLink>
@@ -36,6 +58,21 @@ const galleryImages = computed(() => {
     </p>
 
   </header>
+
+  <nav class="mt-8 sticky top-20 z-30 rounded-2xl border border-foreground/15 bg-background/80 backdrop-blur p-2">
+    <div class="flex flex-wrap gap-2">
+      <button
+        v-for="item in toc"
+        :key="item.id"
+        type="button"
+        class="px-3 py-2 rounded-xl text-sm bg-background hover:bg-accent hover:text-accent-foreground"
+        @click="scrollToSection(item.id)"
+      >
+        {{ item.label }}
+      </button>
+    </div>
+  </nav>
+
 
   <div class="mt-8 hidden sm:block">
   <img
@@ -54,7 +91,7 @@ const galleryImages = computed(() => {
 
       <!-- Concept (accent callout) -->
       <div class="grid gap-6 lg:grid-cols-2 lg:items-start">
-        <section v-if="project.concept" class="h-fit lg:mt-10 rounded-2xl border border-accent bg-accent/20 p-6">
+        <section id="concept" v-if="project.concept" class="h-fit lg:mt-10 rounded-2xl border border-accent bg-accent/20 p-6">
           <h2 class="text-2xl font-semibold">Concept</h2>
           <p class="mt-3 text-foreground/80 leading-relaxed">
             {{ project.concept }}
@@ -63,7 +100,7 @@ const galleryImages = computed(() => {
       
 
       <!-- Inspiration -->
-      <section v-if="project.inspiration?.length" class="h-fit rounded-2xl p-6">
+      <section id="inspiration" v-if="project.inspiration?.length" class="h-fit rounded-2xl p-6">
         <h2 class="text-2xl font-semibold">Inspiration</h2>
         <ul class="mt-3 list-disc pl-5 space-y-2 text-foreground/80">
           <li v-for="item in project.inspiration" :key="item">{{ item }}</li>
@@ -73,7 +110,7 @@ const galleryImages = computed(() => {
 
 
    <!-- Overview -->
-      <section>
+      <section id="overview" class="scroll-mt-24">
         <h2 class="text-2xl font-semibold">Overview</h2>
         <p class="mt-3 text-foreground/80 leading-relaxed">
           {{ project.description }}
@@ -81,7 +118,7 @@ const galleryImages = computed(() => {
       </section>
 
       <!-- Takeaways -->
-      <section v-if="project.takeaways">
+      <section  id="takeaways" v-if="project.takeaways">
         <h2 class="text-2xl font-semibold">Key takeaways</h2>
         <div class="mt-4 grid gap-6 sm:grid-cols-2">
           <div class="rounded-2xl border border-foreground/15 bg-background p-5">
@@ -101,7 +138,7 @@ const galleryImages = computed(() => {
       </section>
 
       <!-- Gallery -->
-      <section class="pt-2">
+      <section id="gallery" class="pt-2">
         <h2 class="text-2xl font-semibold">Gallery</h2>
 
         <div class="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-2">
