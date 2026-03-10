@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
+import { computed, ref } from "vue";
 import { useRoute, RouterLink } from "vue-router";
 import { projects } from "./data";
 import { Button } from "@/components/ui/button";
@@ -27,6 +27,9 @@ const toc = computed(() => {
     { id: "gallery", label: "Gallery" },
   ].filter(Boolean) as { id: string; label: string }[];
 });
+
+const showToc = computed(() => project.value?.slug === "placeres");
+const tocOpen = ref(true);
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
@@ -59,8 +62,25 @@ function scrollToSection(id: string) {
 
   </header>
 
-  <nav class="mt-8 sticky top-20 z-30 rounded-2xl border border-foreground/15 bg-background/80 backdrop-blur p-2">
-    <div class="flex flex-wrap gap-2">
+  <nav
+    v-if="showToc"
+    class="mt-8 sticky top-20 z-30 rounded-2xl border border-foreground/15 bg-background/80 backdrop-blur p-2"
+  >
+    <div class="flex items-center justify-between gap-3 px-1">
+      <p class="text-sm text-foreground/70">Menu</p>
+      <Button
+        type="button"
+        variant="ghost"
+        size="sm"
+        class="h-8 px-2 hover:bg-accent hover:text-accent-foreground"
+        @click="tocOpen = !tocOpen"
+        :aria-expanded="tocOpen"
+      >
+        {{ tocOpen ? "Hide" : "Show" }}
+      </Button>
+    </div>
+
+    <div v-show="tocOpen" class="mt-2 flex flex-wrap gap-2">
       <button
         v-for="item in toc"
         :key="item.id"
