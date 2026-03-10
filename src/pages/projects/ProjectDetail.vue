@@ -9,6 +9,12 @@ const route = useRoute();
 const slug = computed(() => String(route.params.slug ?? ""));
 
 const project = computed(() => projects.find((p) => p.slug === slug.value));
+const galleryImages = computed(() => {
+  if (!project.value) return [];
+  const hero = project.value.heroImage ?? "";
+  return project.value.gallery.filter((img) => img !== hero);
+});
+
 </script>
 
 <template>
@@ -44,28 +50,34 @@ const project = computed(() => projects.find((p) => p.slug === slug.value));
   <div class="mt-10 grid gap-10">
     <!-- Main -->
     <div class="space-y-10">
-      <!-- Overview -->
+   
+
+      <!-- Concept (accent callout) -->
+      <div class="grid gap-6 lg:grid-cols-2 lg:items-start">
+        <section v-if="project.concept" class="h-fit lg:mt-10 rounded-2xl border border-accent bg-accent/20 p-6">
+          <h2 class="text-2xl font-semibold">Concept</h2>
+          <p class="mt-3 text-foreground/80 leading-relaxed">
+            {{ project.concept }}
+          </p>
+        </section>
+      
+
+      <!-- Inspiration -->
+      <section v-if="project.inspiration?.length" class="h-fit rounded-2xl p-6">
+        <h2 class="text-2xl font-semibold">Inspiration</h2>
+        <ul class="mt-3 list-disc pl-5 space-y-2 text-foreground/80">
+          <li v-for="item in project.inspiration" :key="item">{{ item }}</li>
+        </ul>
+      </section>
+     </div>  
+
+
+   <!-- Overview -->
       <section>
         <h2 class="text-2xl font-semibold">Overview</h2>
         <p class="mt-3 text-foreground/80 leading-relaxed">
           {{ project.description }}
         </p>
-      </section>
-
-      <!-- Concept (accent callout) -->
-      <section v-if="project.concept" class="rounded-2xl border border-accent bg-accent/20 p-6">
-        <h2 class="text-2xl font-semibold">Concept</h2>
-        <p class="mt-3 text-foreground/80 leading-relaxed">
-          {{ project.concept }}
-        </p>
-      </section>
-
-      <!-- Inspiration -->
-      <section v-if="project.inspiration?.length">
-        <h2 class="text-2xl font-semibold">Inspiration</h2>
-        <ul class="mt-3 list-disc pl-5 space-y-2 text-foreground/80">
-          <li v-for="item in project.inspiration" :key="item">{{ item }}</li>
-        </ul>
       </section>
 
       <!-- Takeaways -->
@@ -92,21 +104,23 @@ const project = computed(() => projects.find((p) => p.slug === slug.value));
       <section class="pt-2">
         <h2 class="text-2xl font-semibold">Gallery</h2>
 
-        <div class="mt-5 grid gap-6">
+        <div class="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-2">
           <figure
-            v-for="(img, i) in project.gallery"
+            v-for="(img, i) in galleryImages"
             :key="img + i"
-            class="rounded-2xl border border-foreground/15 bg-background p-4 sm:p-6"
+            class=" overflow-hidden bg-background"
           >
             <img
               :src="img"
               :alt="`${project.title} image ${i + 1}`"
-              class="w-full max-h-[75vh] object-contain"
+              class="w-full h-full object-cover"
               loading="lazy"
             />
           </figure>
         </div>
       </section>
+
+
     </div>
   </div>
  </div>
