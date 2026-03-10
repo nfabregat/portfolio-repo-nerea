@@ -10,7 +10,7 @@ interface MenuItem {
 }
 
 interface Props {
-  items: MenuItem[];
+  items: ReadonlyArray<MenuItem>;
   homeRoute?: string;
 }
 
@@ -46,7 +46,7 @@ function closeMobile() {
 </script>
 
 <template>
-  <nav class="fixed top-0 left-0 z-40 w-full border-b border-black/10 bg-[var(--primary)] text-[var(--primary-foreground)]">
+ <nav class="fixed top-0 left-0 z-40 w-full border-b border-primary-foreground/30 bg-primary text-primary-foreground">
     <div class="w-full px-2 sm:px-4">
       <!-- Top bar -->
       <div class="h-16 flex items-center justify-between">

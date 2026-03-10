@@ -19,7 +19,7 @@ const project = computed(() => projects.find((p) => p.slug === slug.value));
     </RouterLink>
 
     <div v-if="project" class="mt-6">
-      <h1 class="text-3xl font-semibold tracking-tight">{{ project.title }}</h1>
+      <h1 class="mt-4 text-4xl font-display font-semibold tracking-tight">{{ project.title }}</h1>
       <p class="mt-2 text-muted-foreground">{{ project.summary }}</p>
 
       <div class="mt-6 grid gap-6 lg:grid-cols-[1.2fr_0.8fr]">
@@ -36,22 +36,20 @@ const project = computed(() => projects.find((p) => p.slug === slug.value));
             <p class="text-sm">{{ project.year }}</p>
           </div>
 
-          <div class="mt-4">
-            <p class="text-sm text-muted-foreground">Tags</p>
-            <div class="mt-2 flex flex-wrap gap-2">
-              <span
-                v-for="tag in project.tags"
-                :key="tag"
-                class="text-xs px-2 py-1 rounded-md border bg-background text-muted-foreground"
-              >
-                {{ tag }}
-              </span>
-            </div>
-          </div>
+          <div class="mt-3 flex flex-wrap items-center gap-2 text-sm">
+            <span class="px-2 py-1 rounded-md bg-background border">{{ project.year }}</span>
+            <span
+              v-for="tag in project.tags"
+              :key="tag"
+              class="px-2 py-1 rounded-md bg-background border capitalize"
+            >
+              {{ tag }}
+            </span>
+           </div>
 
-          <div class="mt-4">
-            <p class="text-sm text-muted-foreground">Tools</p>
-            <ul class="mt-2 text-sm list-disc pl-5">
+           <div class="mt-4">
+             <p class="text-sm text-muted-foreground">Tools</p>
+             <ul class="mt-2 text-sm list-disc pl-5">
               <li v-for="t in project.tools" :key="t">{{ t }}</li>
             </ul>
           </div>

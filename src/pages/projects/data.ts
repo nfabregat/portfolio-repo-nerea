@@ -1,7 +1,8 @@
 export type ProjectTag = "web" | "ui" | "branding" | "video";
 
 export interface Project {
-  slug: string;       
+  slug: string; 
+  title: string;      
   summary: string;
   year: string;
   tags: ProjectTag[];
@@ -12,6 +13,14 @@ export interface Project {
   gallery: string[];
 }
 
+const baseUrl = import.meta.env.BASE_URL ?? "/";
+
+function withBase(path: string) {
+  const normalizedBase = baseUrl.endsWith("/") ? baseUrl : `${baseUrl}/`;
+  const normalizedPath = path.replace(/^\/+/, "");
+  return `${normalizedBase}${normalizedPath}`;
+}
+
 export const projects: Project[] = [
   {
     slug: "transversal2",
@@ -20,18 +29,18 @@ export const projects: Project[] = [
     year: "2026",
     tags: ["web"],
     tools: ["Vue", "TypeScript", "Tailwind"],
-    cover: "/portfolio/covers/transversal2.webp",
+    cover: withBase("/portfolio/covers/transversal2.webp"),
 
     description: "Project overview (edit this later).",
     gallery: [
-      "/portfolio/covers/transversal2.webp",
-      "/portfolio/projects/transversal2/01.webp",
-      "/portfolio/projects/transversal2/02.webp",
-      "/portfolio/projects/transversal2/03.webp",
-      "/portfolio/projects/transversal2/04.webp",
-      "/portfolio/projects/transversal2/05.webp",
-      "/portfolio/projects/transversal2/06.webp",
-      "/portfolio/projects/transversal2/07.webp",
+      withBase("/portfolio/covers/transversal2.webp"),
+      withBase("/portfolio/projects/transversal2/01.webp"),
+      withBase("/portfolio/projects/transversal2/02.webp"),
+      withBase("/portfolio/projects/transversal2/03.webp"),
+      withBase("/portfolio/projects/transversal2/04.webp"),
+      withBase("/portfolio/projects/transversal2/05.webp"),
+      withBase("/portfolio/projects/transversal2/06.webp"),
+      withBase("/portfolio/projects/transversal2/07.webp"),
     ],
   },
 
@@ -42,18 +51,18 @@ export const projects: Project[] = [
     year: "2026",
     tags: ["web"],
     tools: ["Vue", "TypeScript", "Tailwind"],
-    cover: "/portfolio/covers/placeres.webp",
+    cover: withBase("/portfolio/covers/placeres.webp"),
     description: "Project overview (edit later).",
     gallery: [
-      "/portfolio/covers/placeres.webp",
-      "/portfolio/projects/placeres/01.webp",
-      "/portfolio/projects/placeres/02.webp",
-      "/portfolio/projects/placeres/03.webp",
-      "/portfolio/projects/placeres/04.webp",
-      "/portfolio/projects/placeres/05.webp",
-      "/portfolio/projects/placeres/06.webp",
-      "/portfolio/projects/placeres/07.webp",
-      "/portfolio/projects/placeres/08.webp",
+      withBase("/portfolio/covers/placeres.webp"),
+      withBase("/portfolio/projects/placeres/01.webp"),
+      withBase("/portfolio/projects/placeres/02.webp"),
+      withBase("/portfolio/projects/placeres/03.webp"),
+      withBase("/portfolio/projects/placeres/04.webp"),
+      withBase("/portfolio/projects/placeres/05.webp"),
+      withBase("/portfolio/projects/placeres/06.webp"),
+      withBase("/portfolio/projects/placeres/07.webp"),
+      withBase("/portfolio/projects/placeres/08.webp"),
     ],
   },
 
@@ -64,18 +73,18 @@ export const projects: Project[] = [
     year: "2026",
     tags: ["web"],
     tools: ["Vue", "TypeScript", "Tailwind"],
-    cover: "/portfolio/covers/aureo.webp",
+    cover: withBase("/portfolio/covers/aureo.webp"),
     description: "Project overview (edit later).",
     gallery: [
-      "/portfolio/covers/aureo.webp",
-      "/portfolio/projects/aureo/01.webp",
-      "/portfolio/projects/aureo/02.webp",
-      "/portfolio/projects/aureo/03.webp",
-      "/portfolio/projects/aureo/04.webp",
-      "/portfolio/projects/aureo/05.webp",
-      "/portfolio/projects/aureo/06.webp",
-      "/portfolio/projects/aureo/07.webp",
-      "/portfolio/projects/aureo/08.webp",
+      withBase("/portfolio/covers/aureo.webp"),
+      withBase("/portfolio/projects/aureo/01.webp"),
+      withBase("/portfolio/projects/aureo/02.webp"),
+      withBase("/portfolio/projects/aureo/03.webp"),
+      withBase("/portfolio/projects/aureo/04.webp"),
+      withBase("/portfolio/projects/aureo/05.webp"),
+      withBase("/portfolio/projects/aureo/06.webp"),
+      withBase("/portfolio/projects/aureo/07.webp"),
+      withBase("/portfolio/projects/aureo/08.webp"),
     ],
   },
 ];

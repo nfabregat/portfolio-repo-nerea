@@ -64,12 +64,6 @@ function submit() {
   touched.message = false
 }
 
-type SocialLink = {
-  label: string
-  url: string
-  icon: any
-}
-
 </script>
 
 
