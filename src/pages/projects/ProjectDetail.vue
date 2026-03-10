@@ -31,20 +31,20 @@ const galleryImages = computed(() => {
       {{ project.title }}
     </h1>
 
-    <p class="mt-3 text-foreground/75 leading-relaxed max-w-2xl">
+    <p class="mt-3 text-foreground/75 leading-relaxed ">
       {{ project.summary }}
     </p>
 
   </header>
 
-  <div class="mt-8">
-    <img
-      :src="project.heroImage ?? project.cover"
-      :alt="project.title"
-      class="w-full max-h-[70vh] object-cover"
-      loading="lazy"
-    />
-  </div>
+  <div class="mt-8 hidden sm:block">
+  <img
+    :src="project.heroImage ?? project.cover"
+    :alt="project.title"
+    class="w-full max-h-[70vh] object-cover"
+    loading="lazy"
+  />
+</div>
 
   <!-- Layout -->
   <div class="mt-10 grid gap-10">
@@ -85,7 +85,7 @@ const galleryImages = computed(() => {
         <h2 class="text-2xl font-semibold">Key takeaways</h2>
         <div class="mt-4 grid gap-6 sm:grid-cols-2">
           <div class="rounded-2xl border border-foreground/15 bg-background p-5">
-            <h3 class="font-display font-semibold">Strengths</h3>
+            <h3 class=" font-semibold">Strengths</h3>
             <ul class="mt-3 list-disc pl-5 space-y-2 text-foreground/80">
               <li v-for="s in project.takeaways.strengths" :key="s">{{ s }}</li>
             </ul>
