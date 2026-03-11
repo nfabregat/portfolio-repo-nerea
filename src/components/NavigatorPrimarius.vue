@@ -98,6 +98,17 @@ function closeMobile() {
 
       <!-- Mobile dropdown panel -->
       <div v-if="mobileOpen" class="sm:hidden pb-3 grid gap-2">
+        <RouterLink :to="props.homeRoute" @click="closeMobile">
+          <Button
+            variant="ghost"
+            class="w-full justify-start hover:bg-[var(--accent)] hover:text-[var(--accent-foreground)] text-[var(--primary-foreground)]"
+            :class="isActive(props.homeRoute) ? 'text-[var(--foreground)] font-semibold' : ''"
+          >
+            <House class="mr-2 h-4 w-4" />
+            Home
+          </Button>
+        </RouterLink>
+
         <RouterLink
           v-for="item in props.items"
           :key="item.label"
