@@ -37,14 +37,30 @@ function withBase(path: string) {
 export const projects: Project[] = [
   {
     slug: "transversal2",
-    title: "Transversal 2",
-    summary: "Project summary (edit this later).",
+    heroImage: withBase("/portfolio/projects/transversal2/07.webp"),
+    title: "Sobrevive a la Vida",
+    summary:
+      "Survive the Life is a mental-health inspired board game concept focused on emotional intelligence. I created the visual identity and the final game assets with a playful, youth-friendly tone.",
     year: "2026",
-    tags: ["web"],
-    tools: ["Vue", "TypeScript", "Tailwind"],
+    tags: ["branding", "ui"],
+    tools: [
+      "Adobe Illustrator",
+      "Adobe Photoshop",
+      "Blender",
+      "Procreate",
+      "Photography",
+    ],
     cover: withBase("/portfolio/covers/transversal2.webp"),
 
-    description: "Project overview (edit this later).",
+    description:
+      "The project translates emotional skills into approachable visuals. The focus was on creating a cohesive graphic system for the board, cards, and tokens—clear, readable, and consistent across all pieces.",
+    concept:
+      "A game aesthetic inspired by mental health and emotional awareness, designed to feel friendly rather than clinical. Humor, color and iconography help make an “intimidating” topic feel approachable and engaging.",
+    inspiration: [
+      "Bold, modular layouts for quick scanning.",
+      "High-contrast hierarchy (titles, icons, key text).",
+      "A playful visual language to balance a sensitive theme.",
+    ],
     gallery: [
       withBase("/portfolio/covers/transversal2.webp"),
       withBase("/portfolio/projects/transversal2/01.webp"),

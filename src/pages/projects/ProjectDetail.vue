@@ -28,7 +28,9 @@ const toc = computed(() => {
   ].filter(Boolean) as { id: string; label: string }[];
 });
 
-const showToc = computed(() => project.value?.slug === "placeres");
+const showToc = computed(
+  () => project.value?.slug === "placeres" || project.value?.slug === "transversal2",
+);
 const tocOpen = ref(false);
 const footerBumpPx = ref(0);
 
