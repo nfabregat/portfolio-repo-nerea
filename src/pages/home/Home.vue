@@ -58,8 +58,8 @@ const marqueeImages = computed(() => {
         CREATIVE
       </p>
 
-      <div class="mx-auto flex min-h-[calc(100dvh-4rem-7rem)] max-w-6xl flex-col justify-center sm:justify-between gap-10 text-center sm:text-left">
-        <div class="flex flex-wrap items-center justify-between gap-4">
+      <div class="mx-auto flex min-h-[calc(100dvh-4rem-7rem)] max-w-6xl flex-col justify-between gap-8 sm:gap-10 text-center sm:text-left">
+        <div class="flex flex-col items-center gap-2 sm:flex-row sm:items-center sm:justify-between sm:gap-4">
           <p class="text-xs uppercase tracking-[0.22em] text-foreground/70">
             Welcome to my creative
           </p>
@@ -88,7 +88,7 @@ const marqueeImages = computed(() => {
 
       <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <p class="subtitle max-w-md text-sm text-foreground/70 leading-relaxed">
-          Browse case studies, visual systems, and playful experiments across disciplines.
+          Design, photography, and creative tech—made to be explored.
         </p>
 
           <div class="flex flex-wrap gap-3">
@@ -113,7 +113,7 @@ const marqueeImages = computed(() => {
     </section>
 
     <section class="relative left-1/2 w-screen -translate-x-1/2 bg-accent py-14 sm:py-20 min-h-[calc(100dvh-4rem)]">
-      <div class="grid gap-10 sm:gap-12">
+      <div class="mx-auto flex min-h-[calc(100dvh-4rem-7rem)] max-w-6xl flex-col justify-between gap-10 sm:gap-12">
         <div class="overflow-hidden">
           <div class="marquee-track flex w-max items-center gap-4 px-6">
             <div
@@ -126,7 +126,7 @@ const marqueeImages = computed(() => {
           </div>
         </div>
 
-        <div class="mx-auto max-w-6xl px-6">
+        <div class="px-6 text-center sm:text-left">
           <p class="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-accent-foreground">
             Explore my projects
           </p>
