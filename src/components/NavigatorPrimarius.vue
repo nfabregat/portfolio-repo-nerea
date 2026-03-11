@@ -62,11 +62,14 @@ function closeMobile() {
         <!-- Mobile: text logo (Home link) -->
         <RouterLink
           :to="props.homeRoute"
-          class="sm:hidden inline-flex rounded-md px-2 py-1 font-display text-lg uppercase tracking-[0.22em] transition-colors hover:bg-accent hover:text-accent-foreground"
+          class="sm:hidden inline-flex items-center gap-2 rounded-md px-2 py-1 transition-colors hover:bg-accent hover:text-accent-foreground"
           aria-label="Home"
           @click="closeMobile"
         >
-          Nerea
+          <span class="font-display text-xl font-semibold tracking-[-0.02em] leading-none">
+            Nerea
+          </span>
+          <span class="h-2 w-2 rounded-full bg-accent" aria-hidden="true" />
         </RouterLink>
 
         <!-- Desktop links -->
