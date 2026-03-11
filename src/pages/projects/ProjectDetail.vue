@@ -266,15 +266,25 @@ function scrollToSection(id: string) {
   </div>
  </div>
 
-    <div v-else class="mt-8 rounded-xl border bg-card p-6">
-      <h2 class="text-lg font-semibold">Project not found</h2>
-      <p class="mt-2 text-muted-foreground">
-        The project you’re looking for doesn’t exist.
-      </p>
-      <div class="mt-4">
-        <RouterLink :to="{ name: 'projects' }">
-          <Button variant="secondary">Go back</Button>
-        </RouterLink>
+    <div v-else class="mt-8 rounded-2xl border bg-card p-8 shadow-sm">
+      <div class="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
+        <div class="max-w-xl">
+          <p class="text-xs uppercase tracking-[0.22em] text-muted-foreground">
+            404
+          </p>
+          <h2 class="mt-3 font-display text-3xl sm:text-4xl font-semibold tracking-tight">
+            Project not found
+          </h2>
+          <p class="mt-3 text-muted-foreground leading-relaxed">
+            The project you’re looking for doesn’t exist (or the link is wrong).
+          </p>
+
+          <div class="mt-6">
+            <RouterLink :to="{ name: 'projects' }">
+              <Button variant="secondary" class="hover:bg-accent hover:text-accent-foreground">Go back</Button>
+            </RouterLink>
+          </div>
+        </div>
       </div>
     </div>
   </section>

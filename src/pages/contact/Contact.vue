@@ -106,6 +106,7 @@ async function submit() {
           <Input
             v-model="form.name"
             placeholder="Your name"
+            class="bg-white"
             @blur="touched.name = true"
             :aria-invalid="touched.name && !!errors.name"
             :disabled="isSending"
@@ -123,6 +124,7 @@ async function submit() {
             v-model="form.email"
             type="email"
             placeholder="you@email.com"
+            class="bg-white"
             @blur="touched.email = true"
             :aria-invalid="touched.email && !!errors.email"
             :disabled="isSending"
@@ -138,6 +140,7 @@ async function submit() {
           <Textarea
             v-model="form.message"
             placeholder="How can I help you?"
+            class="bg-white"
             @blur="touched.message = true"
             :aria-invalid="touched.message && !!errors.message"
             :disabled="isSending"
