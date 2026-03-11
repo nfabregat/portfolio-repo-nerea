@@ -4,19 +4,19 @@ import { education } from "./data";
 
 <template>
   <div class="space-y-4">
-    <h2 class="text-xl font-semibold">Education</h2>
+    <h2 class="font-display text-3xl font-semibold tracking-tight">Education</h2>
     <p class="text-muted-foreground">
-      My academic background and relevant training.
+      My academic background and training.
     </p>
 
     <div class="mt-4 grid gap-4">
       <article
         v-for="ed in education"
         :key="ed.title + ed.institution"
-        class="rounded-xl border bg-card p-5 shadow-sm"
+        class="rounded-2xl border bg-card p-6 shadow-sm"
       >
         <div class="flex flex-wrap items-baseline justify-between gap-2">
-          <h3 class="font-medium">{{ ed.title }}</h3>
+          <h3 class="text-base font-semibold tracking-tight">{{ ed.title }}</h3>
           <span class="text-xs text-muted-foreground">{{ ed.period }}</span>
         </div>
 

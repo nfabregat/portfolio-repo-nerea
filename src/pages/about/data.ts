@@ -12,31 +12,61 @@ export interface SkillGroup {
 
 export const education: EducationItem[] = [
   {
-    title: "Higher National Diploma / Degree (Your program name)",
-    institution: "Your school / university",
-    period: "2024 — 2026",
-    notes: ["Focus on web design, frontend development, and digital projects."],
+    title: "BSc in Design & Creative Technologies (2nd year)",
+    institution: "Universitat Politècnica de València (UPV)",
+    period: "Currently studying",
+    notes: ["Design, creative technology, and visual/technical foundations."],
+  },
+  {
+    title: "Artistic Baccalaureate",
+    institution: "IES Leopoldo Querol, Vinaròs",
+    period: "Completed",
   },
 ];
 
 export const skillGroups: SkillGroup[] = [
   {
-    title: "Frontend",
-    items: ["Vue 3", "TypeScript", "Vue Router", "Tailwind CSS"],
+    title: "Design",
+    items: ["Branding systems", "Typography", "Visual hierarchy & layout", "Prototyping"],
   },
   {
-    title: "UI / Design",
-    items: ["Figma", "Responsive layout", "Component design"],
+    title: "Production",
+    items: ["Photo editing & retouching", "3D basics"],
   },
   {
-    title: "Tools",
-    items: ["Git / GitHub", "VS Code"],
+    title: "Collaboration",
+    items: ["Collaboration & feedback", "Version control basics (Git/GitHub)"],
   },
 ];
 
 
 export const otherInfo = {
-  languages: ["English (B2)", "Spanish (native)", "Catalan (native)"],
-  tools: ["Figma", "VS Code", "GitHub", "Adobe Illustrator"],
-  interests: ["UI design", "Frontend development", "Branding", "Motion graphics"],
+  tools: [
+    "Adobe Illustrator",
+    "Adobe Photoshop",
+    "Adobe After Effects",
+    "Adobe Premiere Pro",
+    "Blender",
+    "Procreate",
+    "Figma",
+    "VS Code",
+    "GitHub",
+    "Reaper",
+    "Photography",
+  ],
+  languages: [
+    "Spanish (native)",
+    "Catalan (native)",
+    "English (B2 — Cambridge certified)",
+    "French (5 years of study)",
+    "Czech (learning currently)",
+  ],
+  interests: [
+    "Photography",
+    "Web / UI design",
+    "Branding & packaging",
+    "Motion graphics",
+    "3D exploration",
+    "Creative technology",
+  ],
 };

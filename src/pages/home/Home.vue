@@ -88,7 +88,7 @@ const marqueeImages = computed(() => {
 
       <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
         <p class="subtitle max-w-md text-sm text-foreground/70 leading-relaxed">
-          Design, photography, and creative tech—made to be explored.
+          A mix of photography, branding, and creative tech projects.
         </p>
 
           <div class="flex flex-wrap gap-3">
@@ -131,7 +131,7 @@ const marqueeImages = computed(() => {
             Explore my projects
           </p>
           <p class="mt-2 max-w-2xl text-sm sm:text-base text-accent-foreground/80 leading-relaxed">
-            Branding, packaging, photography, and design—all in one place.
+            Design, photography, and creative tech—made to be explored.
           </p>
 
           <div class="mt-5">
