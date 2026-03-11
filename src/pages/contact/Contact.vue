@@ -148,7 +148,11 @@ async function submit() {
         </div>
 
         <div class="flex flex-wrap items-center gap-3">
-          <Button type="submit" :disabled="isSending">
+          <Button
+            type="submit"
+            :disabled="isSending"
+            class="hover:bg-accent hover:text-accent-foreground"
+          >
             <Loader2 v-if="isSending" class="mr-2 h-4 w-4 animate-spin" />
             {{ isSending ? "Sending…" : "Send" }}
           </Button>

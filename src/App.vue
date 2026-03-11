@@ -11,7 +11,7 @@ const menuItems = [
 </script>
 
 <template>
-  <div class="pt-16 min-h-dvh flex flex-col">
+  <div class="min-h-dvh flex flex-col">
     <main class="pt-16">
       <NavigatorPrimarius :items="menuItems" home-route="/" />
       <RouterView />

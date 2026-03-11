@@ -3,85 +3,109 @@ import { computed } from "vue";
 import { RouterLink } from "vue-router";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-vue-next";
+import { useMouseMotion } from "@/composables/useMouseMotion";
 
-// Reuse embedded data (same pattern as the reference project)
-import { projects } from "@/pages/projects/data";
-
-const featured = computed(() => projects.slice(0, 3));
+const { offset, onMouseMove, onMouseLeave } = useMouseMotion({ maxOffsetPx: 18 });
+const heroStyle = computed(() => ({
+  backgroundPositionX: `calc(50% + ${offset.x}px)`,
+  backgroundPositionY: `calc(50% + ${offset.y}px)`,
+  transition: "background-position 0.1s ease-out",
+}));
 </script>
 
 <template>
-  <section class="mx-auto max-w-5xl px-6 py-10">
-    <!-- Header / Cover -->
-    <header class="rounded-2xl border bg-card p-8 shadow-sm">
-      <p class="text-sm text-muted-foreground">Personal portfolio</p>
+  <section
+    class="hero relative isolate min-h-[calc(100dvh-4rem)] overflow-hidden px-6 py-14 sm:py-20"
+    @mousemove="onMouseMove"
+    @mouseleave="onMouseLeave"
+  >
+    <div class="hero-bg absolute inset-0 -z-10" :style="heroStyle" aria-hidden="true" />
+    <div class="absolute inset-0 -z-10 bg-gradient-to-b from-background/35 via-background/10 to-background/80" aria-hidden="true" />
 
-      <h1 class="mt-3 text-4xl sm:text-5xl font-semibold tracking-tight">
-        Hi, I’m Nerea.
-      </h1>
+    <p class="hero-outline pointer-events-none absolute -left-10 top-24 select-none" aria-hidden="true">
+      PORTFOLIO
+    </p>
+    <p class="hero-outline pointer-events-none absolute -right-10 bottom-24 select-none" aria-hidden="true">
+      CREATIVE
+    </p>
 
-      <p class="mt-4 text-muted-foreground leading-relaxed max-w-2xl">
-        I create responsive websites and UI-focused projects. Here you can explore a selection of my work and the details behind each project.
-      </p>
-
-      <div class="mt-6 flex flex-wrap gap-3">
-        <RouterLink :to="{ name: 'projects' }">
-          <Button class="gap-2">
-            View projects
-            <ArrowRight class="h-4 w-4" />
-          </Button>
-        </RouterLink>
-
-        <RouterLink :to="{ name: 'contact' }">
-          <Button variant="outline">Contact</Button>
-        </RouterLink>
+    <div class="mx-auto flex min-h-[calc(100dvh-4rem-7rem)] max-w-6xl flex-col justify-between gap-10">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <p class="text-xs uppercase tracking-[0.22em] text-foreground/70">
+          Welcome to my creative
+        </p>
+        <p class="hidden sm:block text-xs uppercase tracking-[0.22em] text-foreground/60">
+          With a little bit of everything
+        </p>
       </div>
-    </header>
 
-    <!-- Featured projects -->
-    <section class="mt-10">
-      <div class="flex items-end justify-between gap-4 flex-wrap">
-        <div>
-          <h2 class="text-2xl font-semibold tracking-tight">Featured projects</h2>
-          <p class="mt-2 text-muted-foreground">
-            A quick preview. You can open each project for full details.
+      <div class="grid gap-8 lg:grid-cols-12 lg:items-end">
+        <h1 class="lg:col-span-9">
+          <span class="block font-display text-6xl sm:text-8xl lg:text-9xl font-semibold uppercase leading-[0.82] tracking-tight">
+            Portfolio
+          </span>
+          <span class="mt-5 block subtitle max-w-2xl text-lg sm:text-xl text-foreground/80 leading-relaxed">
+            With a little bit of everything.
+          </span>
+        </h1>
+
+        <div class="lg:col-span-3 lg:justify-self-end">
+          <p class="text-sm text-foreground/70">By</p>
+          <p class="mt-1 text-lg font-semibold tracking-tight">
+            Nerea Fabregat Mulet
           </p>
         </div>
-
-        <RouterLink :to="{ name: 'projects' }" class="text-sm text-muted-foreground hover:text-foreground">
-          See all →
-        </RouterLink>
       </div>
 
-      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-        <article
-          v-for="p in featured"
-          :key="p.slug"
-          class="rounded-xl border bg-card p-5 shadow-sm flex flex-col"
-        >
-          <img
-            :src="p.cover"
-            :alt="p.title"
-            class="h-28 w-full rounded-md border bg-background object-contain"
-            loading="lazy"
-          />
+      <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <p class="subtitle max-w-md text-sm text-foreground/70 leading-relaxed">
+          Explore case studies, visual systems, and playful experiments across tools and mediums.
+        </p>
 
-          <div class="mt-4 flex items-center justify-between gap-3">
-            <h3 class="font-medium leading-tight">{{ p.title }}</h3>
-            <span class="text-xs text-muted-foreground">{{ p.year }}</span>
-          </div>
+        <div class="flex flex-wrap gap-3">
+          <RouterLink :to="{ name: 'projects' }">
+            <Button class="gap-2 bg-primary/85 backdrop-blur-sm hover:bg-accent hover:text-accent-foreground">
+              Explore projects
+              <ArrowRight class="h-4 w-4" />
+            </Button>
+          </RouterLink>
 
-          <p class="mt-2 text-sm text-muted-foreground flex-1">
-            {{ p.summary }}
-          </p>
-
-          <div class="mt-4">
-            <RouterLink :to="{ name: 'project-detail', params: { slug: p.slug } }">
-              <Button variant="secondary" class="w-full">View details</Button>
-            </RouterLink>
-          </div>
-        </article>
+          <RouterLink :to="{ name: 'contact' }">
+            <Button
+              variant="outline"
+              class="bg-background/70 backdrop-blur-sm hover:bg-accent hover:text-accent-foreground"
+            >
+              Contact
+            </Button>
+          </RouterLink>
+        </div>
       </div>
-    </section>
+    </div>
   </section>
 </template>
+
+<style scoped>
+.hero-bg {
+  background-size: cover;
+  background-position: center center;
+  background-image: url("/portfolio/others/background-image.webp");
+  will-change: background-position, background-size;
+  transform: scale(1);
+  transition: transform 240ms ease;
+}
+
+.hero:hover .hero-bg {
+  transform: scale(1.06);
+}
+
+.hero-outline {
+  font-family: "Fraunces", "Nunito Sans", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  font-size: clamp(4rem, 10vw, 10rem);
+  line-height: 0.9;
+  color: transparent;
+  -webkit-text-stroke: 1px color-mix(in srgb, var(--foreground) 18%, transparent);
+  opacity: 0.9;
+}
+</style>
