@@ -25,6 +25,11 @@ import ProjectCardCarousel from "@/components/projects/ProjectCardCarousel.vue";
     if (selectedTag.value === "all") return projects;
     return projects.filter((p) => p.tags.includes(selectedTag.value as Tag));
   });
+
+  function cardImages(p: (typeof projects)[number]) {
+    const rest = (p.gallery ?? []).filter((img) => img !== p.cover);
+    return [p.cover, ...rest];
+  }
 </script>
 
 <template>
@@ -67,7 +72,7 @@ import ProjectCardCarousel from "@/components/projects/ProjectCardCarousel.vue";
         class="rounded-xl border bg-card p-5 shadow-sm flex flex-col overflow-visible transition hover:shadow-md"
       >
         <ProjectCardCarousel
-          :images="p.gallery.length ? p.gallery : [p.cover]"
+          :images="cardImages(p)"
           :alt="p.title"
         />
 

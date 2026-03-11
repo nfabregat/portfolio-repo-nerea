@@ -127,17 +127,28 @@ export const projects: Project[] = [
 
   {
     slug: "aureo",
-    title: "Aureo",
-    summary: "Short project summary (edit later).",
+    title: "Áureo chocolates",
+    summary:
+      "Aureo is a branding and packaging system for an accessible “artisan chocolate” line—modern, friendly, and sustainability-driven, designed for both retail and online launch.",
     year: "2026",
-    tags: ["web"],
-    tools: ["Vue", "TypeScript", "Tailwind"],
+    tags: ["branding"],
+    tools: ["Adobe Illustrator", "Adobe Photoshop"],
     cover: withBase("/portfolio/covers/aureo.webp"),
-    description: "Project overview (edit later).",
+    heroImage: withBase("/portfolio/projects/aureo/08.webp"),
+    description:
+      "Aureo is a family business evolving from traditional nougat into a contemporary chocolate brand. The goal was to democratize “author chocolate”: premium quality and experimentation at an accessible price point, supported by a clean, attractive visual system and sustainable packaging.",
+    concept:
+      "The identity balances heritage and modernity without looking “luxury”. The tone is close and confident—designed to feel high-quality but approachable. The packaging system prioritizes clarity (brand + flavor) and scalability across four bars, a welcome pack, a paper bag, and social media stories.",
+    inspiration: [
+      "Typography-first logo (no symbol) for versatility across packaging and social media.",
+      "System-based layout: consistent hierarchy, clear flavor naming, and easy product recognition.",
+      "Contemporary look with room for experimental flavors while staying readable on-shelf.",
+      "Sustainability cues through material choices and restrained printing (CMYK + 1 special finish).",
+    ],
     gallery: [
-      withBase("/portfolio/covers/aureo.webp"),
       withBase("/portfolio/projects/aureo/01.webp"),
       withBase("/portfolio/projects/aureo/02.webp"),
+      withBase("/portfolio/covers/aureo.webp"),
       withBase("/portfolio/projects/aureo/03.webp"),
       withBase("/portfolio/projects/aureo/04.webp"),
       withBase("/portfolio/projects/aureo/05.webp"),

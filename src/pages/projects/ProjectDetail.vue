@@ -11,9 +11,19 @@ const slug = computed(() => String(route.params.slug ?? ""));
 
 const project = computed(() => projects.find((p) => p.slug === slug.value));
 const isSobrevive = computed(() => project.value?.slug === "transversal2");
+const isAureo = computed(() => project.value?.slug === "aureo");
+const heroSrc = computed(() => {
+  if (!project.value) return "";
+  if (isAureo.value) return project.value.cover;
+  return project.value.heroImage ?? project.value.cover;
+});
+const heroWrapperClass = computed(() => {
+  if (isAureo.value) return "mt-8";
+  return "mt-8 hidden sm:block";
+});
 const galleryImages = computed(() => {
   if (!project.value) return [];
-  const hero = project.value.heroImage ?? "";
+  const hero = heroSrc.value;
   return project.value.gallery.filter((img) => img !== hero);
 });
 
@@ -29,8 +39,8 @@ const toc = computed(() => {
   ].filter(Boolean) as { id: string; label: string }[];
 });
 
-const showToc = computed(
-  () => project.value?.slug === "placeres" || project.value?.slug === "transversal2",
+const showToc = computed(() =>
+  ["placeres", "transversal2", "aureo"].includes(project.value?.slug ?? ""),
 );
 const tocOpen = ref(false);
 const footerBumpPx = ref(0);
@@ -158,9 +168,9 @@ function scrollToSection(id: string) {
   </div>
 
 
-  <div class="mt-8 hidden sm:block">
+  <div :class="heroWrapperClass">
   <img
-    :src="project.heroImage ?? project.cover"
+    :src="heroSrc"
     :alt="project.title"
     class="w-full max-h-[70vh] object-cover"
     loading="lazy"
