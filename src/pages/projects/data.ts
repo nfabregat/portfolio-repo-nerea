@@ -1,4 +1,4 @@
-export type ProjectTag = "web" | "ui" | "branding" | "video" | "photography";
+export type ProjectTag = string;
 
 export interface Project {
   slug: string; 
@@ -42,7 +42,7 @@ export const projects: Project[] = [
     summary:
       "Survive the Life is a mental-health inspired board game concept focused on emotional intelligence. I created the visual identity and the final game assets with a playful, youth-friendly tone.",
     year: "2026",
-    tags: ["branding", "ui"],
+    tags: ["illustrator", "photoshop", "blender", "photography", "procreate"],
     tools: [
       "Adobe Illustrator",
       "Adobe Photoshop",
@@ -80,7 +80,7 @@ export const projects: Project[] = [
   summary:
     "A photographic series that romanticizes small everyday moments, inspired by Jacques Henri Lartigue and Marta Soliño’s “Placeres”.",
   year: "2026",
-  tags: ["photography"],
+  tags: ["photoshop", "photography"],
   tools: ["Photography", "Photoshop"],
   cover: withBase("/portfolio/covers/placeres.webp"),
 
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     summary:
       "Aureo is a branding and packaging system for an accessible “artisan chocolate” line—modern, friendly, and sustainability-driven, designed for both retail and online launch.",
     year: "2026",
-    tags: ["branding"],
+    tags: ["illustrator", "blender"],
     tools: ["Adobe Illustrator", "Adobe Photoshop"],
     cover: withBase("/portfolio/covers/aureo.webp"),
     heroImage: withBase("/portfolio/projects/aureo/08.webp"),

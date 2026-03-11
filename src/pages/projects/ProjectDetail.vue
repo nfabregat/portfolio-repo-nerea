@@ -30,7 +30,7 @@ const galleryImages = computed(() => {
 const toc = computed(() => {
   if (!project.value) return [];
   return [
-    
+    { id: "summary", label: "Summary" },
     project.value.concept ? { id: "concept", label: "Concept" } : null,
     project.value.inspiration?.length ? { id: "inspiration", label: "Inspiration" } : null,
     { id: "overview", label: "Overview" },
@@ -104,7 +104,7 @@ function scrollToSection(id: string) {
 
    <div v-if="project" class="mt-6">
   <!-- Header -->
-  <header>
+  <header id="summary" class="scroll-mt-24">
     <h1 class="font-display text-4xl sm:text-5xl font-semibold tracking-tight">
       {{ project.title }}
     </h1>
