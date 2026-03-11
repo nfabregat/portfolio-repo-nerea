@@ -51,14 +51,14 @@ const marqueeImages = computed(() => {
       <div class="hero-bg absolute inset-0 -z-10" :style="heroStyle" aria-hidden="true" />
       <div class="absolute inset-0 -z-10 bg-gradient-to-b from-background/35 via-background/10 to-background/80" aria-hidden="true" />
 
-      <p class="hero-outline pointer-events-none absolute -left-10 top-24 select-none" aria-hidden="true">
+      <p class="hero-outline pointer-events-none absolute -left-10 top-24 hidden sm:block select-none" aria-hidden="true">
         PORTFOLIO
       </p>
-      <p class="hero-outline pointer-events-none absolute -right-10 bottom-24 select-none" aria-hidden="true">
+      <p class="hero-outline pointer-events-none absolute -right-10 bottom-24 hidden sm:block select-none" aria-hidden="true">
         CREATIVE
       </p>
 
-      <div class="mx-auto flex min-h-[calc(100dvh-4rem-7rem)] max-w-6xl flex-col justify-between gap-10">
+      <div class="mx-auto flex min-h-[calc(100dvh-4rem-7rem)] max-w-6xl flex-col justify-center sm:justify-between gap-10 text-center sm:text-left">
         <div class="flex flex-wrap items-center justify-between gap-4">
           <p class="text-xs uppercase tracking-[0.22em] text-foreground/70">
             Welcome to my creative
@@ -78,7 +78,7 @@ const marqueeImages = computed(() => {
             </span>
           </h1>
 
-          <div class="lg:col-span-3 lg:justify-self-end">
+          <div class="lg:col-span-3 lg:justify-self-end text-center lg:text-right">
             <p class="text-sm text-foreground/70">By</p>
             <p class="mt-1 text-lg font-semibold tracking-tight">
               Nerea Fabregat Mulet
@@ -86,10 +86,10 @@ const marqueeImages = computed(() => {
           </div>
         </div>
 
-        <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
-          <p class="subtitle max-w-md text-sm text-foreground/70 leading-relaxed">
-            Explore case studies, visual systems, and playful experiments across tools and mediums.
-          </p>
+      <div class="flex flex-col gap-5 sm:flex-row sm:items-end sm:justify-between">
+        <p class="subtitle max-w-md text-sm text-foreground/70 leading-relaxed">
+          Browse case studies, visual systems, and playful experiments across disciplines.
+        </p>
 
           <div class="flex flex-wrap gap-3">
             <RouterLink :to="{ name: 'projects' }">
@@ -112,21 +112,46 @@ const marqueeImages = computed(() => {
       </div>
     </section>
 
-    <section class="relative left-1/2 w-screen -translate-x-1/2 bg-accent py-10">
-      <div class="mx-auto max-w-6xl px-6">
-        <p class="text-xs uppercase tracking-[0.22em] text-accent-foreground/80">
-          Selected work
-        </p>
-      </div>
+    <section class="relative left-1/2 w-screen -translate-x-1/2 bg-accent py-14 sm:py-20 min-h-[calc(100dvh-4rem)]">
+      <div class="grid gap-10 sm:gap-12">
+        <div class="overflow-hidden">
+          <div class="marquee-track flex w-max items-center gap-4 px-6">
+            <div
+              v-for="(img, i) in marqueeImages"
+              :key="img + i"
+              class="h-36 w-52 sm:h-40 sm:w-60 md:h-48 md:w-72 lg:h-56 lg:w-80 overflow-hidden border border-accent-foreground/20 bg-background/20"
+            >
+              <img :src="img" :alt="`Project image ${i + 1}`" class="h-full w-full object-cover" loading="lazy" />
+            </div>
+          </div>
+        </div>
 
-      <div class="mt-6 overflow-hidden">
-        <div class="marquee-track flex w-max items-center gap-4 px-6">
-          <div
-            v-for="(img, i) in marqueeImages"
-            :key="img + i"
-            class="h-32 w-52 sm:h-36 sm:w-60 md:h-44 md:w-72 lg:h-48 lg:w-80 overflow-hidden rounded-2xl border border-accent-foreground/20 bg-background/30"
-          >
-            <img :src="img" :alt="`Project cover ${i + 1}`" class="h-full w-full object-cover" loading="lazy" />
+        <div class="mx-auto max-w-6xl px-6">
+          <p class="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-accent-foreground">
+            Explore my projects
+          </p>
+          <p class="mt-2 max-w-2xl text-sm sm:text-base text-accent-foreground/80 leading-relaxed">
+            Branding, packaging, photography, and design—all in one place.
+          </p>
+
+          <div class="mt-5">
+            <RouterLink :to="{ name: 'projects' }">
+              <Button class="bg-primary text-primary-foreground hover:bg-background hover:text-foreground">
+                View projects
+              </Button>
+            </RouterLink>
+          </div>
+        </div>
+
+        <div class="overflow-hidden">
+          <div class="marquee-track marquee-track--reverse flex w-max items-center gap-4 px-6">
+            <div
+              v-for="(img, i) in marqueeImages"
+              :key="img + i + '-reverse'"
+              class="h-36 w-52 sm:h-40 sm:w-60 md:h-48 md:w-72 lg:h-56 lg:w-80 overflow-hidden border border-accent-foreground/20 bg-background/20"
+            >
+              <img :src="img" :alt="`Project image ${i + 1}`" class="h-full w-full object-cover" loading="lazy" />
+            </div>
           </div>
         </div>
       </div>
@@ -162,6 +187,11 @@ const marqueeImages = computed(() => {
 .marquee-track {
   animation: marquee 26s linear infinite;
   will-change: transform;
+}
+
+.marquee-track--reverse {
+  animation-direction: reverse;
+  animation-duration: 30s;
 }
 
 @media (prefers-reduced-motion: reduce) {
