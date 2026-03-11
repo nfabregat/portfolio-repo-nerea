@@ -62,9 +62,9 @@ export const projects: Project[] = [
       "A playful visual language to balance a sensitive theme.",
     ],
     gallery: [
-      withBase("/portfolio/covers/transversal2.webp"),
       withBase("/portfolio/projects/transversal2/01.webp"),
       withBase("/portfolio/projects/transversal2/02.webp"),
+      withBase("/portfolio/covers/transversal2.webp"),
       withBase("/portfolio/projects/transversal2/03.webp"),
       withBase("/portfolio/projects/transversal2/04.webp"),
       withBase("/portfolio/projects/transversal2/05.webp"),

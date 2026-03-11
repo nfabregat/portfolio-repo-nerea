@@ -10,6 +10,7 @@ const route = useRoute();
 const slug = computed(() => String(route.params.slug ?? ""));
 
 const project = computed(() => projects.find((p) => p.slug === slug.value));
+const isSobrevive = computed(() => project.value?.slug === "transversal2");
 const galleryImages = computed(() => {
   if (!project.value) return [];
   const hero = project.value.heroImage ?? "";
@@ -174,7 +175,14 @@ function scrollToSection(id: string) {
 
       <!-- Concept (accent callout) -->
       <div class="grid gap-6 lg:grid-cols-2 lg:items-start">
-        <section id="concept" v-if="project.concept" class="h-fit lg:mt-10 rounded-2xl border border-accent bg-accent/20 p-6">
+        <section
+          id="concept"
+          v-if="project.concept"
+          :class="[
+            'h-fit rounded-2xl border border-accent bg-accent/20 p-6',
+            isSobrevive ? 'lg:mt-4' : 'lg:mt-10',
+          ]"
+        >
           <h2 class="text-2xl font-semibold">Concept</h2>
           <p class="mt-3 text-foreground/80 leading-relaxed">
             {{ project.concept }}
@@ -228,7 +236,10 @@ function scrollToSection(id: string) {
           <figure
             v-for="(img, i) in galleryImages"
             :key="img + i"
-            class=" overflow-hidden bg-background"
+            :class="[
+              'overflow-hidden bg-background',
+              isSobrevive && i === 0 ? 'sm:col-span-2' : '',
+            ]"
           >
             <img
               :src="img"
